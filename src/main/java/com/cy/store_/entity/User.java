@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
+import java.util.Date;
+
 /**
  * @Description: 用户的实体类
  * @Auther: hanshihao
@@ -17,7 +19,7 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class User extends BaseEntity {
+public class User {
     /**
      * 用户id
      */
@@ -63,6 +65,30 @@ public class User extends BaseEntity {
      * 是否删除 0-未删除，1-已删除
      */
     private Integer isDelete;
+
+
+    /**
+     * 创建用户
+     */
+    private String createdUser;
+
+    /**
+     * 创建时间
+     */
+    private Date createdTime;
+
+    /**
+     * 修改用户
+     */
+    private String modifiedUser;
+
+    /**
+     * 修改时间
+     */
+    private Date modifiedTime;
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 
 
 }

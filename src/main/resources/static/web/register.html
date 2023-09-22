@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="UTF-8">
 		<!--edge浏览器H5兼容设置-->
@@ -138,6 +138,29 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
+		<script type = "text/javascript">
+			//1.监听注册按钮是否被点击，如果被点击可以执行一个方法
+			$("#btn-reg").click(function () {
+				//2.发送ajax()的异步请求来完成用户的注册功能
+				$.ajax({
+					url: "/users/reg",
+					type: "POST",
+					data: $("#form-reg").serialize(),
+					dataType: "JSON",
+					success : function (json){
+						if(json.state == 200){
+							alert("注册成功");
+						}else{
+							alert("注册失败");
+						}
+					},
+					error : function (xhr){
+							alert("注册时产生未知错误！" + xhr.status)
+					}
+				});
+			});
+		</script>
+
 	</body>
 
 </html>

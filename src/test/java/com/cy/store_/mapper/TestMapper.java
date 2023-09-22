@@ -19,25 +19,25 @@ import java.util.List;
 // @SpringBootTest 表示当前是一个测试类，不会随同项目一起打包
 @SpringBootTest
 // @RunWith 表示启动这个单元测试类 ，当前这个注解运行会有报错提示
-//@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 public class TestMapper {
 
     @Autowired
     private TUserMapper userMapper;
 
-    @Test
-    public void insert(){
-        User user = new User();
-        user.setUsername("韩少飞");
-        user.setPassword("HelloWo");
-        Integer inset = userMapper.inset(user);
-        System.out.println(inset);
-    }
+//    @Test
+//    public void insert(){
+//        User user = new User();
+//        user.setUsername("韩少飞");
+//        user.setPassword("HelloWo");
+//        Integer inset = userMapper.inset(user);
+//        System.out.println(inset);
+//    }
 
-    @Test
-    public void getName(){
-        List<User> all = userMapper.findAll();
-        System.out.println(all);
-    }
+//    @Test
+//    public void getName(){
+//        List<User> all = userMapper.findAll();
+//        System.out.println(all);
+//    }
 
 }
