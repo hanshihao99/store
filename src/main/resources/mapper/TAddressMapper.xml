@@ -35,8 +35,9 @@
         created_user,created_time,modified_user,
         modified_time
     </sql>
-    <select id="countByUid" resultType="java.lang.Integer">
-        select count(*) from t_address where uid = 15;
---         SELECT count(*) from t_address where uid = #{uid}
-    </select>
+
+<!--    <select id="countByUid" resultType="java.lang.Integer">-->
+<!--        select count(*) from t_address where uid = 15;-->
+<!--&#45;&#45;         SELECT count(*) from t_address where uid = #{uid}-->
+<!--    </select>-->
 </mapper>

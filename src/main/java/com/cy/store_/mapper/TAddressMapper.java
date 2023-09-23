@@ -1,8 +1,12 @@
 package com.cy.store_.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.cy.store_.entity.Address;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.io.Serializable;
 
 /**
 * @author hanshihao
@@ -21,11 +25,13 @@ public interface TAddressMapper extends BaseMapper<Address> {
     @Override
     int insert(Address address);
 
+
     /**
      * 根据用户的id统计收货地址数量
      * @param uid 用户id
      * @return 收货地址数量
      */
+    @Select("SELECT count(*) from t_address where uid = #{uid}")
     int countByUid(Integer uid);
 }
 

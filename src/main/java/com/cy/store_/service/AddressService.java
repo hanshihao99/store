@@ -2,6 +2,8 @@ package com.cy.store_.service;
 
 import com.cy.store_.entity.Address;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cy.store_.mapper.TAddressMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
 * @author hanshihao
@@ -9,5 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-09-22 23:25:11
 */
 public interface AddressService extends IService<Address> {
+
+    void addnewAddress(Integer uid, String username , Address address);
 
 }

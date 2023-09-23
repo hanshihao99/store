@@ -5,21 +5,21 @@
 <!-- namespace 属性:用于指定当前的映射文件和哪个接口进行映射 -->
 <mapper namespace="com.cy.store_.mapper.TUserMapper">
 <!--  resultMap ： 自定义映射规则-->
-<!--    <resultMap id="BaseResultMap" type="com.cy.store_.entity.User">-->
-<!--        <id property="uid" column="uid" jdbcType="INTEGER"/>-->
-<!--        <result property="username" column="username" jdbcType="VARCHAR"/>-->
-<!--        <result property="password" column="password" jdbcType="CHAR"/>-->
-<!--        <result property="salt" column="salt" jdbcType="CHAR"/>-->
-<!--        <result property="phone" column="phone" jdbcType="VARCHAR"/>-->
-<!--        <result property="email" column="email" jdbcType="VARCHAR"/>-->
-<!--        <result property="gender" column="gender" jdbcType="INTEGER"/>-->
-<!--        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>-->
-<!--        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>-->
-<!--        <result property="createdUser" column="created_user" jdbcType="VARCHAR"/>-->
-<!--        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>-->
-<!--        <result property="modifiedUser" column="modified_user" jdbcType="VARCHAR"/>-->
-<!--        <result property="modifiedTime" column="modified_time" jdbcType="TIMESTAMP"/>-->
-<!--    </resultMap>-->
+    <resultMap id="BaseResultMap" type="com.cy.store_.entity.User">
+        <id property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="CHAR"/>
+        <result property="salt" column="salt" jdbcType="CHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+        <result property="createdUser" column="created_user" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="modifiedUser" column="modified_user" jdbcType="VARCHAR"/>
+        <result property="modifiedTime" column="modified_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
 
 
 <!--    &lt;!&ndash;    id属性: 表示映射的接口中的方法名称    &ndash;&gt;-->

@@ -1,14 +1,11 @@
 package com.cy.store_.mapper;
 
 import com.cy.store_.entity.User;
-import org.apache.ibatis.annotations.Arg;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 /**
  * @Description:
@@ -20,7 +17,7 @@ import java.util.List;
 @SpringBootTest
 // @RunWith 表示启动这个单元测试类 ，当前这个注解运行会有报错提示
 @RunWith(SpringRunner.class)
-public class TestMapper {
+public class UserMapperTest {
 
     @Autowired
     private TUserMapper userMapper;
@@ -34,10 +31,13 @@ public class TestMapper {
 //        System.out.println(inset);
 //    }
 
-//    @Test
-//    public void getName(){
+    @Test
+    public void getName(){
 //        List<User> all = userMapper.findAll();
 //        System.out.println(all);
-//    }
+
+        User byUsername = userMapper.findByUsername("jerry");
+        System.out.println(byUsername);
+    }
 
 }

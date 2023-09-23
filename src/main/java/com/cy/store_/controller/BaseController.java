@@ -41,6 +41,9 @@ public class BaseController {
         }else if(e instanceof FileIOException){
             result.setState(6001);
             result.setMessage(e.getMessage());
+        }else if(e instanceof AddressCountLimitException){
+            result.setState(7001);
+            result.setMessage(e.getMessage());
         }
         return result;
     }
