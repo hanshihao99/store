@@ -1,10 +1,13 @@
 package com.cy.store_.service.impl;
 
 import com.cy.store_.entity.User;
+import com.cy.store_.interceptor.LoginInterceptor;
 import com.cy.store_.mapper.TUserMapper;
 import com.cy.store_.service.UserService;
 import com.cy.store_.service.ex.*;
 import com.google.common.collect.Lists;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -19,6 +22,9 @@ import java.util.UUID;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
 
     @Autowired
     TUserMapper userMapper;
@@ -88,6 +94,8 @@ public class UserServiceImpl implements UserService {
         user.setUid(result.getUid());
         user.setUsername(result.getUsername());
         user.setAvatar(result.getAvatar());
+
+        logger.info("username : " + username);
 
         return user;
     }

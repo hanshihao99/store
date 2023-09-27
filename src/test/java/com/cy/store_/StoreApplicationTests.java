@@ -12,8 +12,10 @@ class StoreApplicationTests {
     @Autowired
     private TUserMapper userMapper;
 
+
     @Test
     void contextLoads() {
+
     }
 
 

@@ -2,8 +2,10 @@ package com.cy.store_.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.store_.entity.Address;
+import com.cy.store_.mapper.TDictDistrictMapper;
 import com.cy.store_.service.AddressService;
 import com.cy.store_.mapper.TAddressMapper;
+import com.cy.store_.service.DictDistrictService;
 import com.cy.store_.service.ex.AddressCountLimitException;
 import com.cy.store_.service.ex.InsertException;
 import org.checkerframework.checker.units.qual.A;
@@ -26,6 +28,9 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
     @Autowired
     TAddressMapper tAddressMapper;
 
+    @Autowired
+    DictDistrictService dictDistrictService;
+
     @Value("${user.address.max-count}")
     private Integer countMax;
 
@@ -36,8 +41,16 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
             throw new AddressCountLimitException("用户收货地址超出上限");
         }
 
+        // 使用省市区service 来补全地址的省市地址信息
+        String provinceName = dictDistrictService.getNameByCode(address.getProvinceCode());
+        String cityName = dictDistrictService.getNameByCode(address.getCityCode());
+        String areaName = dictDistrictService.getNameByCode(address.getAreaCode());
+        address.setProvinceName(provinceName);
+        address.setCityName(cityName);
+        address.setAreaCode(areaName);
+
         address.setUid(uid);
-        Integer isDefault = count == 0 ? 1 : 0;
+        Integer isDefault = count == 0 ? 1 : 0; // 1表示默认 ，0表示不默认
         address.setIsDefault(isDefault);
         address.setCreatedUser(username);
         address.setCreatedTime(new Date());

@@ -27,6 +27,5 @@ public class AddressController extends BaseController {
         String username = getUsernameFromSession(session);
         addressService.addnewAddress(uid,username,address);
         return new JsonResult<>(SUC) ;
-
     }
 }

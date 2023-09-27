@@ -43,4 +43,9 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 //                .addPathPatterns("/**")     // 表示要拦截的url是什么
 //                .excludePathPatterns(patterns);  // 表述除了这个集合之外
 //    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor());
+    }
 }
