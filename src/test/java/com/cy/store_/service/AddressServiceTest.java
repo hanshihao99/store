@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description:
@@ -33,6 +34,12 @@ public class AddressServiceTest {
         address.setPhone("1527578678");
         address.setCityCode("047100");
         addressService.addnewAddress(11,"韩少飞",address);
+    }
+
+    @Test
+    public void findByUid() {
+        List<Address> byUid = addressService.findByUid(11);
+        System.out.println(byUid);
     }
 
 }

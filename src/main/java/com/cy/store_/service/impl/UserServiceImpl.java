@@ -73,7 +73,6 @@ public class UserServiceImpl implements UserService {
         String password = user.getPassword();
         // 根据用户名称来查询用户的数据是否存在 以及是否已经注销，如果不在则抛出异常
         User result = userMapper.findByUsername(username);
-        System.out.println(result);
         if(result == null || result.getIsDelete() == 1){
             throw new UsernameNotFoundException("用户数据不存在");
         }

@@ -44,6 +44,15 @@ public class BaseController {
         }else if(e instanceof AddressCountLimitException){
             result.setState(7001);
             result.setMessage(e.getMessage());
+        }else if(e instanceof AccessDeniedException){
+            result.setState(8001);
+            result.setMessage(e.getMessage());
+        }else if(e instanceof AddressNotFoundException){
+            result.setState(7002);
+            result.setMessage(e.getMessage());
+        }else if(e instanceof DeleteException){
+            result.setState(7003);
+            result.setMessage(e.getMessage());
         }
         return result;
     }

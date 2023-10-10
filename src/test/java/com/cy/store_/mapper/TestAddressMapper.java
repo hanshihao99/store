@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description:
@@ -43,6 +44,27 @@ public class TestAddressMapper {
         System.out.println(i);
     }
 
+    @Test
+    public void findByUid (){
+        List<Address> byUid = addressMapper.findByUid(11);
+        System.out.println(byUid);
+    }
+
+    @Test
+    public void findAid (){
+        Address byAid = addressMapper.findAid(2);
+        System.out.println(byAid);
+    }
+
+    @Test
+    public void updateNonDefault (){
+        Integer integer = addressMapper.updateNonDefault(15);
+    }
+
+    @Test
+    public void updateDefaultByAid (){
+        addressMapper.updateDefaultByAid(11,"hip");
+    }
 
 
 
