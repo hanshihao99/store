@@ -1,5 +1,8 @@
 package com.cy.store_.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.store_.entity.Address;
 import com.cy.store_.mapper.TDictDistrictMapper;
@@ -98,6 +101,23 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
         // 将用户选择的地址设置为默认收货地址
         rows = tAddressMapper.updateDefaultByAid(aid, username);
         if(rows!=1){
+            throw new UpdateException("更新数据产生异常");
+        }
+    }
+
+    @Override
+    public void updateAddress(Integer uid, String username, Address address) {
+        Address result = tAddressMapper.findAid(address.getAid());
+        if(result == null){
+            throw new AddressNotFoundException("收货地址不存在");
+        }
+        // 检测当前收货地址的归属
+        if(!result.getUid().equals(uid)){
+            throw new AccessDeniedException("非法数据访问");
+        }
+        address.setModifiedUser(username);
+        Integer rows = tAddressMapper.updateAddress(address);
+        if(rows != 1){
             throw new UpdateException("更新数据产生异常");
         }
 

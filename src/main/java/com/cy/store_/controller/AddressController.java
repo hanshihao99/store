@@ -39,6 +39,14 @@ public class AddressController extends BaseController {
         return new JsonResult<>(SUC,listAddress) ;
     }
 
+    @RequestMapping(value ="update_address" )
+    public JsonResult<Void> updateAddress(@RequestBody Address address , HttpSession session){
+        Integer uid = getUidFromSession(session);
+        String username = getUsernameFromSession(session);
+        addressService.updateAddress(uid,username,address);
+        return new JsonResult<>(SUC) ;
+    }
+
     @RequestMapping(value ="set_default" )
     public JsonResult<Void> setDefault(@RequestBody Address address , HttpSession session){
         Integer uid = getUidFromSession(session);

@@ -43,7 +43,7 @@ public class UserController extends BaseController{
 //    @ResponseBody // 表示此方法的响应结果以json格式进行数据的响应给到前端
     public JsonResult<Void> reg(@RequestBody User user){
         userService.reg(user);
-        return new JsonResult(SUC);
+        return new JsonResult<>(SUC);
     }
 
     /**
@@ -57,7 +57,7 @@ public class UserController extends BaseController{
         session.setAttribute("uid",data.getUid());
         session.setAttribute("username",data.getUsername());
 
-        return new JsonResult(SUC,data);
+        return new JsonResult<>(SUC,data);
     }
 
     @RequestMapping(value = "changePassword")

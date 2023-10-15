@@ -18,6 +18,8 @@ public interface AddressService extends IService<Address> {
 
     List<Address> findByUid(Integer uid);
 
+    void updateAddress(Integer uid, String username , Address address);
+
     void setDefault(Integer aid , Integer uid , String username);
 
     void deleteAddress(Integer aid, Integer uid,String username);

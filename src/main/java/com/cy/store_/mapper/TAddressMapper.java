@@ -29,6 +29,27 @@ public interface TAddressMapper extends BaseMapper<Address> {
     @Override
     int insert(Address address);
 
+    @Override
+    int update(Address entity, Wrapper<Address> updateWrapper);
+
+    @Update("<script>"
+            +"UPDATE t_address"
+            + "<set>"
+            + "<if test = 'address != null'>"
+            + "address = #{address},"
+            + "</if>"
+            + "<if test = 'phone != null'>"
+            + "phone = #{phone},"
+            + "</if>"
+            + "<if test = 'name != null'>"
+            + "name = #{name},"
+            + "</if>"
+            + "     modified_user = #{modifiedUser},"
+            + "     modified_time = CURRENT_TIMESTAMP,"
+            + "</set>"
+            + " where aid = #{aid}"
+            + "</script>")
+    int updateAddress(Address address);
 
     /**
      * 根据用户的id统计收货地址数量
