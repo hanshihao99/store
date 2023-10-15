@@ -2,6 +2,7 @@ package com.cy.store_.controller;
 
 import com.cy.store_.controller.ex.FileIOException;
 import com.cy.store_.controller.ex.FileUploadException;
+import com.cy.store_.service.ProductService;
 import com.cy.store_.service.ex.*;
 import com.cy.store_.util.JsonResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -52,6 +53,9 @@ public class BaseController {
             result.setMessage(e.getMessage());
         }else if(e instanceof DeleteException){
             result.setState(7003);
+            result.setMessage(e.getMessage());
+        } else if (e instanceof ProductNotFoundException) {
+            result.setState(9001);
             result.setMessage(e.getMessage());
         }
         return result;

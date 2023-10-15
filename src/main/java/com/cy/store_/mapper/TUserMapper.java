@@ -1,5 +1,6 @@
 package com.cy.store_.mapper;
 
+import com.cy.store_.entity.Address;
 import com.cy.store_.entity.User;
 import org.apache.ibatis.annotations.*;
 

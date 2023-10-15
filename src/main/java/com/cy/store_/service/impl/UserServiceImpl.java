@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
         // 首先判断用户是否依旧注册过，调用findUsername 判断用户是否被注册过
         String username = user.getUsername();
         User result = userMapper.findByUsername(username);
-        System.out.println(result);
         //判断结果集是否为null 来抛出异常
         if(result != null){
             throw new UsernameDuplicatedException("用户名被占用");
@@ -102,7 +101,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changePassword(Integer uid, String username, String oldPassword, String newPassword) {
         User result = userMapper.findByUid(uid);
-        System.out.println(result);
         if(result == null || result.getIsDelete() ==1){
             throw new UsernameNotFoundException("用户数据不存在");
         }
