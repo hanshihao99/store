@@ -26,13 +26,13 @@ public class ProductController extends BaseController{
     @RequestMapping(value = "host_list" )
     public JsonResult<List<Product>> findHostList(){
         List<Product> hostList = productService.findHostList();
-        return new JsonResult(SUC,hostList);
+        return new JsonResult<>(SUC,hostList);
     }
 
     @RequestMapping(value = "findById" )
     public JsonResult<Product> findById(@RequestBody Product product){
         Product result = productService.findByid(product.getId());
-        return new JsonResult(SUC,result);
+        return new JsonResult<>(SUC,result);
     }
 
 }
