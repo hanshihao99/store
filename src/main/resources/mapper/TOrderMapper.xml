@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.store_.mapper.TOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.cy.store_.entity.Order">
+            <id property="oid" column="oid" jdbcType="INTEGER"/>
+            <result property="uid" column="uid" jdbcType="INTEGER"/>
+            <result property="recvName" column="recv_name" jdbcType="VARCHAR"/>
+            <result property="recvPhone" column="recv_phone" jdbcType="VARCHAR"/>
+            <result property="recvProvince" column="recv_province" jdbcType="VARCHAR"/>
+            <result property="recvCity" column="recv_city" jdbcType="VARCHAR"/>
+            <result property="recvArea" column="recv_area" jdbcType="VARCHAR"/>
+            <result property="recvAddress" column="recv_address" jdbcType="VARCHAR"/>
+            <result property="totalPrice" column="total_price" jdbcType="BIGINT"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
+            <result property="payTime" column="pay_time" jdbcType="TIMESTAMP"/>
+            <result property="createdUser" column="created_user" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+            <result property="modifiedUser" column="modified_user" jdbcType="VARCHAR"/>
+            <result property="modifiedTime" column="modified_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        oid,uid,recv_name,
+        recv_phone,recv_province,recv_city,
+        recv_area,recv_address,total_price,
+        status,order_time,pay_time,
+        created_user,created_time,modified_user,
+        modified_time
+    </sql>
+</mapper>

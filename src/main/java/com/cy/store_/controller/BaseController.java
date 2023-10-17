@@ -57,6 +57,9 @@ public class BaseController {
         } else if (e instanceof ProductNotFoundException) {
             result.setState(9001);
             result.setMessage(e.getMessage());
+        } else if (e instanceof CartNotFountException) {
+            result.setState(9002);
+            result.setMessage(e.getMessage());
         }
         return result;
     }

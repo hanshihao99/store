@@ -84,6 +84,19 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
     }
 
     @Override
+    public Address findByAid(Integer aid,Integer uid) {
+        Address result = tAddressMapper.findAid(aid);
+        if(result == null){
+            throw new AddressNotFoundException("收货地址不存在");
+        }
+
+        if(!result.getUid().equals(uid)){
+            throw new AccessDeniedException("非法数据访问");
+        }
+        return result;
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class) // 添加事务控制
     public void setDefault(Integer aid, Integer uid, String username) {
         Address result = tAddressMapper.findAid(aid);

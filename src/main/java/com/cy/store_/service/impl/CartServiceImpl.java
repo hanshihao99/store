@@ -4,15 +4,16 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.store_.entity.Cart;
 import com.cy.store_.entity.Product;
 import com.cy.store_.mapper.TProductMapper;
+import com.cy.store_.modle.CartVo;
 import com.cy.store_.service.CartService;
 import com.cy.store_.mapper.TCartMapper;
-import com.cy.store_.service.ex.InsertException;
-import com.cy.store_.service.ex.ProductNotFoundException;
-import com.cy.store_.service.ex.UpdateException;
+import com.cy.store_.service.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
 * @author hanshihao
@@ -57,6 +58,68 @@ public class CartServiceImpl extends ServiceImpl<TCartMapper, Cart>
                 throw new UpdateException("更新数据时发生异常");
             }
         }
+    }
+
+    @Override
+    public List<CartVo> getVOByUid(Integer uid) {
+        List<CartVo> listResult = tCartMapper.getVOByUid(uid);
+        if(listResult == null){
+            throw new CartNotFountException("购物车商品不存在");
+        }
+        return listResult;
+    }
+
+    @Override
+    public Integer addNum(Integer cid,Integer uid,String username) {
+        Cart cart = tCartMapper.findByCid(cid);
+        if(cart == null){
+            throw new CartNotFountException("购物车商品不存在");
+        }
+        if(!cart.getUid().equals(uid)){
+            throw new AccessDeniedException("非法数据访问");
+        }
+        Integer num = cart.getNum() + 1;
+        int rows = tCartMapper.updateNumByProduct(num, cid, username);
+        if(rows != 1){
+            throw new UpdateException("更新时异常");
+        }
+        return num;
+    }
+
+    @Override
+    public List<CartVo> getVOByCid(Integer uid,Integer[] cids) {
+        List<CartVo> list = tCartMapper.getVOByCid(cids);
+        if(list == null){
+            throw new CartNotFountException("购物车商品不存在");
+        }
+        Iterator<CartVo> iterator = list.iterator();
+        while(iterator.hasNext()){
+            CartVo cartVo = iterator.next();
+            if(!cartVo.getUid().equals(uid)){ // 说明当前购物车数据不属于该用户
+                throw new AccessDeniedException("非法数据访问");
+                // 或者执行迭代器的remove方法，将list中数据删掉
+                //iterator.remove();
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<CartVo> getVOByCidTest(Integer uid, List<Integer> cids) {
+        List<CartVo> list = tCartMapper.getVOByCidTest(cids);
+        if(list == null){
+            throw new CartNotFountException("购物车商品不存在");
+        }
+        Iterator<CartVo> iterator = list.iterator();
+        while(iterator.hasNext()){
+            CartVo cartVo = iterator.next();
+            if(!cartVo.getUid().equals(uid)){ // 说明当前购物车数据不属于该用户
+                throw new AccessDeniedException("非法数据访问");
+                // 或者执行迭代器的remove方法，将list中数据删掉
+                //iterator.remove();
+            }
+        }
+        return list;
     }
 }
 

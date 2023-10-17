@@ -2,6 +2,7 @@ package com.cy.store_.mapper;
 
 import com.cy.store_.entity.Cart;
 import com.cy.store_.entity.DictDistrict;
+import com.cy.store_.modle.CartVo;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,5 +45,18 @@ public class CartMapperTest {
     public void find () {
         Cart cart = tCartMapper.searchByProduct(15, 10000001);
         System.out.println(cart);
+    }
+
+    @Test
+    public void findByUid () {
+        List<CartVo> byUid = tCartMapper.getVOByUid(15);
+        System.out.println(byUid);
+    }
+
+    @Test
+    public void findByCid () {
+        Integer[] cids = new Integer[]{1,2};
+        List<CartVo> voByCid = tCartMapper.getVOByCid(cids);
+        System.out.println(voByCid);
     }
 }
