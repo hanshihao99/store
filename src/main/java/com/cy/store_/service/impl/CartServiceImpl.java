@@ -87,6 +87,23 @@ public class CartServiceImpl extends ServiceImpl<TCartMapper, Cart>
     }
 
     @Override
+    public Integer delNum(Integer cid, Integer uid, String username) {
+        Cart cart = tCartMapper.findByCid(cid);
+        if(cart == null || cart.getNum() <= 0){
+            throw new CartNotFountException("购物车商品不存在");
+        }
+        if(!cart.getUid().equals(uid)){
+            throw new AccessDeniedException("非法数据访问");
+        }
+        Integer num = cart.getNum()-1;
+        int rows = tCartMapper.updateNumByProduct(num, cid, username);
+        if(rows != 1){
+            throw new UpdateException("更新时异常");
+        }
+        return num;
+    }
+
+    @Override
     public List<CartVo> getVOByCid(Integer uid,Integer[] cids) {
         List<CartVo> list = tCartMapper.getVOByCid(cids);
         if(list == null){

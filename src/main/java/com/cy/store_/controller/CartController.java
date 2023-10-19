@@ -46,6 +46,14 @@ public class CartController extends BaseController{
         return new JsonResult<>(SUC,data);
     }
 
+    @RequestMapping(value = "{cid}/num/del" )
+    public JsonResult<Integer> delNum(@PathVariable Integer cid, HttpSession session) {
+        Integer uid = getUidFromSession(session);
+        String username = getUsernameFromSession(session);
+        Integer data = cartService.delNum(cid, uid, username);
+        return new JsonResult<>(SUC,data);
+    }
+
     @RequestMapping(value = "lists" )
     public JsonResult<List<CartVo>> getVOByCid(Integer[] cids, HttpSession session) {
         Integer uid = getUidFromSession(session);

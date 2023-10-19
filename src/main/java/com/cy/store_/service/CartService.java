@@ -19,6 +19,8 @@ public interface CartService extends IService<Cart> {
 
     Integer addNum(Integer cid,Integer uid,String username);
 
+    Integer delNum(Integer cid,Integer uid,String username);
+
     /**
      * 获取购物车中勾选的商品
      * @param uid 用户id
