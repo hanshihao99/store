@@ -15,7 +15,7 @@ import java.util.List;
 * @createDate 2023-09-24 17:04:29
 * @Entity com.cy.store_.entity.TDictDistrict
 */
-@Mapper
+//@Mapper
 public interface TDictDistrictMapper extends BaseMapper<DictDistrict> {
 
     Logger logger = LoggerFactory.getLogger(TDictDistrictMapper.class);

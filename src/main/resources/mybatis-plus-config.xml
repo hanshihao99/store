@@ -1,0 +1,10 @@
+<configuration>
+    <plus>
+        <global-config>
+            <db-config>
+                <!-- 启用自动获取总记录数 -->
+                <fetch-rows>true</fetch-rows>
+            </db-config>
+        </global-config>
+    </plus>
+</configuration>

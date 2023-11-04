@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+    @Autowired
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     @Autowired
     TUserMapper userMapper;
@@ -66,8 +69,41 @@ public class UserServiceImpl implements UserService {
     }
 
 
+//    @Override
+//    public User login(User user) {
+//        String username = user.getUsername();
+//        String password = user.getPassword();
+//        // 根据用户名称来查询用户的数据是否存在 以及是否已经注销，如果不在则抛出异常
+//        User result = userMapper.findByUsername(username);
+//        if(result == null || result.getIsDelete() == 1){
+//            throw new UsernameNotFoundException("用户数据不存在");
+//        }
+//        // 检测用户的密码是否匹配
+//        // 1. 先获取到数据库中的加密之后的密码
+//        String oldPassword = result.getPassword();
+//        // 2.和用户的传递过来的密码进行比较
+//        // 2.1 先获取盐值：上一次注册时生成的盐值
+//        String salt = result.getSalt();
+//        // 2.2 将用户的密码md5加密
+//        String newMd5Password = getMD5Password(password,salt);
+//        // 3. 比较密码是否正确
+//        if(!newMd5Password.equals(oldPassword)){
+//            throw new PasswordNotMatchException("密码不正确 o-o-o");
+//        }
+//
+//        // 登录成功后没必要返回当前用户的所有数据，可以择机选择，提高性能
+//        user.setUid(result.getUid());
+//        user.setUsername(result.getUsername());
+//        user.setAvatar(result.getAvatar());
+//
+//        logger.info("username : " + username);
+//
+//        return user;
+//    }
+
     @Override
     public User login(User user) {
+
         String username = user.getUsername();
         String password = user.getPassword();
         // 根据用户名称来查询用户的数据是否存在 以及是否已经注销，如果不在则抛出异常
@@ -94,8 +130,8 @@ public class UserServiceImpl implements UserService {
         user.setAvatar(result.getAvatar());
 
         logger.info("username : " + username);
-
         return user;
+
     }
 
     @Override

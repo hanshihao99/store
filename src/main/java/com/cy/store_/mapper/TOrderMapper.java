@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 * @createDate 2023-10-15 20:02:25
 * @Entity com.cy.store_.entity.TOrder
 */
-@Mapper
+//@Mapper
 public interface TOrderMapper extends BaseMapper<Order> {
 
     @Override

@@ -18,7 +18,7 @@ import java.util.List;
 * @createDate 2023-09-22 23:25:11
 * @Entity com.cy.store_.entity.TAddress
 */
-@Mapper
+//@Mapper
 public interface TAddressMapper extends BaseMapper<Address> {
 
     /**

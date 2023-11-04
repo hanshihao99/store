@@ -14,7 +14,7 @@ import java.util.List;
 * @Entity base.entity.TUser
 */
 
-@Mapper
+//@Mapper
 public interface TUserMapper {
 
     @Insert(" insert into t_user (username,\n" +

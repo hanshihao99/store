@@ -16,7 +16,7 @@ import java.util.List;
 * @createDate 2023-10-14 22:40:15
 * @Entity com.cy.store_.entity.TCart
 */
-@Mapper
+//@Mapper
 public interface TCartMapper extends BaseMapper<Cart> {
 
     /**

@@ -1,5 +1,6 @@
 package com.cy.store_.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.cy.store_.entity.Product;
 import com.cy.store_.entity.User;
 import com.cy.store_.service.ProductService;
@@ -33,6 +34,18 @@ public class ProductController extends BaseController{
     public JsonResult<Product> findById(@RequestBody Product product){
         Product result = productService.findByid(product.getId());
         return new JsonResult<>(SUC,result);
+    }
+
+    @RequestMapping(value = "findByNameCount" )
+    public JsonResult<Integer> findByNameCount(@RequestBody Product product){
+        Integer count = productService.findCount(product.getItemType());
+        return new JsonResult<>(SUC,count);
+    }
+
+    @RequestMapping(value = "findAll" )
+    public JsonResult<IPage> findByNameCount(Integer current , Integer size){
+        IPage all = productService.findAll(current,size);
+        return new JsonResult<>(SUC,all);
     }
 
 }

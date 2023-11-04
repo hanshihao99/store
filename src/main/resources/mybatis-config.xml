@@ -1,8 +1,0 @@
-<!--<configuration>-->
-<!--    &lt;!&ndash; 配置日志 &ndash;&gt;-->
-<!--    <settings>-->
-<!--        <setting name="logImpl" value="LOGGING_LIBRARY" />-->
-<!--        <setting name="logLevel" value="DEBUG" />-->
-<!--    </settings>-->
-
-<!--</configuration>-->

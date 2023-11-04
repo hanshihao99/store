@@ -1,5 +1,8 @@
 package com.cy.store_.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.store_.entity.Product;
 import com.cy.store_.service.ProductService;
@@ -8,6 +11,7 @@ import com.cy.store_.service.ex.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.management.Query;
 import java.util.List;
 
 /**
@@ -50,6 +54,21 @@ public class ProductServiceImpl extends ServiceImpl<TProductMapper, Product>
         product.setModifiedTime(null);
         product.setModifiedUser(null);
         return product;
+    }
+
+    @Override
+    public Integer findCount(String name) {
+        QueryWrapper query = new QueryWrapper();
+        query.eq("item_type",name);
+        Integer integer = tProductMapper.selectCount(query);
+        return integer;
+    }
+
+    @Override
+    public IPage findAll(Integer current , Integer size) {
+        Page<Product> page = new Page(current,size);
+        IPage<Product> productIPage = tProductMapper.selectPage(page, null);
+        return productIPage;
     }
 }
 

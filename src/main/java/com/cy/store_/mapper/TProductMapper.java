@@ -1,5 +1,6 @@
 package com.cy.store_.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.cy.store_.entity.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,7 +14,7 @@ import java.util.List;
 * @createDate 2023-10-11 22:09:06
 * @Entity com.cy.store_.entity.TProduct
 */
-@Mapper
+//@Mapper
 public interface TProductMapper extends BaseMapper<Product> {
 
     /**
