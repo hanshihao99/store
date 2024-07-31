@@ -1,17 +1,12 @@
 package com.cy.store_.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.store_.entity.Address;
-import com.cy.store_.mapper.TDictDistrictMapper;
 import com.cy.store_.service.AddressService;
 import com.cy.store_.mapper.TAddressMapper;
 import com.cy.store_.service.DictDistrictService;
 import com.cy.store_.service.ex.*;
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.Current;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -41,7 +36,7 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
 
     @Override
     public void addnewAddress(Integer uid, String username, Address address) {
-        Integer count = tAddressMapper.countByUid(uid);
+        int count = tAddressMapper.countByUid(uid);
         if(count >= countMax){
             throw new AddressCountLimitException("用户收货地址超出上限");
         }
@@ -70,13 +65,13 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
     @Override
     public List<Address> findByUid(Integer uid) {
         List<Address> listAddress = tAddressMapper.findByUid(uid);
-        List<Address> addresses = new ArrayList();
+        List<Address> addresses = new ArrayList<>();
         Address ad = new Address();
-        for(int i = 0;i< listAddress.size();i++ ){
-            ad.setName(listAddress.get(i).getName());
-            ad.setAddress(listAddress.get(i).getAddress());
-            ad.setPhone(listAddress.get(i).getPhone());
-            ad.setTag(listAddress.get(i).getTag());
+        for (Address address : listAddress) {
+            ad.setName(address.getName());
+            ad.setAddress(address.getAddress());
+            ad.setPhone(address.getPhone());
+            ad.setTag(address.getTag());
             addresses.add(ad);
         }
 
@@ -129,7 +124,7 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
             throw new AccessDeniedException("非法数据访问");
         }
         address.setModifiedUser(username);
-        Integer rows = tAddressMapper.updateAddress(address);
+        int rows = tAddressMapper.updateAddress(address);
         if(rows != 1){
             throw new UpdateException("更新数据产生异常");
         }
@@ -156,7 +151,7 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
             return;
         }
 
-        Integer count = tAddressMapper.countByUid(uid);
+        int count = tAddressMapper.countByUid(uid);
         if(count == 0){
             return;
         }
