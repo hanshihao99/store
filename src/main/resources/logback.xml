@@ -1,9 +1,11 @@
 <configuration>
+<property name="LOG_DIR" value="${LOG_DIR}" />
+
 <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>/Users/hanshihao/logs/store/log/info.log</file>
+    <file>${LOG_DIR}/info.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
         <!-- 设置按照小时进行分区 -->
-        <fileNamePattern>/store/log/info.%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+        <fileNamePattern>${LOG_DIR}/info.%d{yyyy-MM-dd_HH}.log</fileNamePattern>
         <maxHistory>24</maxHistory> <!-- 最大保留小时数 -->
     </rollingPolicy>
     <encoder>
