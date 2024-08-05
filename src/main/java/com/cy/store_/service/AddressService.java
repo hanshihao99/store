@@ -14,7 +14,7 @@ import java.util.List;
 */
 public interface AddressService extends IService<Address> {
 
-    void addnewAddress(Integer uid, String username , Address address);
+    void addNewAddress(Integer uid, String username , Address address);
 
     List<Address> findByUid(Integer uid);
 

@@ -35,7 +35,7 @@ public class AddressServiceImpl extends ServiceImpl<TAddressMapper, Address>
     private Integer countMax;
 
     @Override
-    public void addnewAddress(Integer uid, String username, Address address) {
+    public void addNewAddress(Integer uid, String username, Address address) {
         int count = tAddressMapper.countByUid(uid);
         if(count >= countMax){
             throw new AddressCountLimitException("用户收货地址超出上限");

@@ -28,7 +28,7 @@ public class AddressController extends BaseController {
     public JsonResult<Void> addNewAddress(@RequestBody Address address, HttpSession session){
         Integer uid = getUidFromSession(session);
         String username = getUsernameFromSession(session);
-        addressService.addnewAddress(uid,username,address);
+        addressService.addNewAddress(uid,username,address);
         return new JsonResult<>(SUC) ;
     }
 
